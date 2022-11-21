@@ -1,0 +1,30 @@
+{
+  "name": "blog_backend",
+  "version": "1.0.0",
+  "description": "Backend of a blog application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maryum2022skipq/MERN-Stack-Blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maryum2022skipq/MERN-Stack-Blog/issues"
+  },
+  "homepage": "https://github.com/maryum2022skipq/MERN-Stack-Blog#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2",
+    "nodemon": "^2.0.20"
+  }
+}
