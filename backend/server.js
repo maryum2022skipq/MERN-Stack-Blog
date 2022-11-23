@@ -1,10 +1,16 @@
 const express = require("express");
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv").config({
+  path: "E:/Personal Projects/Blog/.env",
+});
 const cors = require("cors");
+const colors = require("colors");
+
 const { errorHandler } = require("./middleware/errorMiddleware");
+const connectDB = require("./config/db");
+
+connectDB();
 
 const app = express();
-const uri = process.env.MONGO_URL;
 const port = process.env.PORT || 5000;
 
 app.use(cors());

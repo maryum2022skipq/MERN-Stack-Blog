@@ -3,7 +3,7 @@ const postSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, "Please add a text value."],
       unique: true,
     },
     summary: {
@@ -12,7 +12,7 @@ const postSchema = mongoose.Schema(
     },
     content: {
       type: String,
-      required: true,
+      required: [true, "Please add a text value."],
     },
     titleImage: {
       type: String,
@@ -20,14 +20,14 @@ const postSchema = mongoose.Schema(
     },
     username: {
       type: String,
-      required: true,
+      required: [true, "Please add a text value."],
     },
     categories: {
       type: Array,
       required: false,
     },
   },
-  { timestamps: ture }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("Post", postSchema);
