@@ -20,19 +20,19 @@ const userSchema = mongoose.Schema(
       default: "",
     },
     profileBackground: {
-      type: true,
+      type: String,
       default: "",
     },
     socialInstagram: {
-      type: true,
+      type: String,
       default: "",
     },
     socialGithub: {
-      type: true,
+      type: String,
       default: "",
     },
     socialFacebook: {
-      type: true,
+      type: String,
       default: "",
     },
   },

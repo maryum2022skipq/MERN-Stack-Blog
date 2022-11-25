@@ -18,9 +18,10 @@ const postSchema = mongoose.Schema(
       type: String,
       default: "",
     },
-    username: {
-      type: String,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
       required: [true, "Please add a text value."],
+      ref: "User",
     },
     categories: {
       type: Array,
