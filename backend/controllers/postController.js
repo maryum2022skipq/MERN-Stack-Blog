@@ -7,7 +7,6 @@ const User = require("../models/users");
 //@route GET api/posts
 //@access PUBLIC
 const getPosts = expressHandler(async (req, res) => {
-
   const username = req.query.user;
   const catName = req.query.cat;
 
@@ -16,20 +15,18 @@ const getPosts = expressHandler(async (req, res) => {
 
     if (username) {
       const user = await User.find({ username });
-      const userId = user[0]._id
+      const userId = user[0]._id;
       if (!user) {
         throw new Error(`No existing posts found of ${username}.`);
       }
-      posts = await Post.find({ user: userId.toString() })
-    }
-    else if (catName) {
+      posts = await Post.find({ user: userId.toString() });
+    } else if (catName) {
       posts = await Post.find({
         categories: {
-          $in: [catName]
-        }
-      })
-    }
-    else {
+          $in: [catName],
+        },
+      });
+    } else {
       posts = await Post.find();
     }
     res.status(200).json(posts);
@@ -46,7 +43,7 @@ const getPost = expressHandler(async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) {
-      res.status(400)
+      res.status(400);
       throw new Error("Post doesn't exist");
     }
     res.status(200).json(post);
@@ -60,7 +57,6 @@ const getPost = expressHandler(async (req, res) => {
 //@route POST api/posts
 //@access PRIVATE
 const createPosts = expressHandler(async (req, res) => {
-
   if (!req.body.title || !req.body.content) {
     res.status(400);
     throw new Error("Please fill the required fields.");
@@ -73,6 +69,8 @@ const createPosts = expressHandler(async (req, res) => {
     titleImage: req.body.titleImage ? req.body.titleImage : "",
     user: req.user.id,
     categories: req.body.categories ? req.body.categories : [],
+    likes: [],
+    comments: [],
   });
 
   res.status(200).json(post);
@@ -88,14 +86,13 @@ const updatePosts = expressHandler(async (req, res) => {
     throw new Error("Post not Found.");
   }
   //check if user exists
-  const user = await User.findById(req.user.id)
-  if (!user) {
-    res.status(401)
+  if (!req.user) {
+    res.status(401);
     throw new Error("User not Found.");
   }
   //check if post author is the same as the user logged in
-  if (post.user.toString() !== user.id) {
-    res.status(401)
+  if (post.user.toString() !== req.user.id) {
+    res.status(401);
     throw new Error("User not Authorized.");
   }
   //update post
@@ -115,14 +112,13 @@ const deletePosts = expressHandler(async (req, res) => {
     throw new Error("Post not Found.");
   }
   //check if user exists
-  const user = await User.findById(req.user.id)
-  if (!user) {
-    res.status(401)
+  if (!req.user) {
+    res.status(401);
     throw new Error("User not Found.");
   }
   //check if post author is the same as the user logged in
-  if (post.user.toString() !== user.id) {
-    res.status(401)
+  if (post.user.toString() !== req.user.id) {
+    res.status(401);
     throw new Error("User not Authorized.");
   }
   //delete post

@@ -1,0 +1,30 @@
+{
+  "name": "mern_blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix front_end",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maryum2022skipq/MERN-Stack-Blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maryum2022skipq/MERN-Stack-Blog/issues"
+  },
+  "homepage": "https://github.com/maryum2022skipq/MERN-Stack-Blog#readme",
+  "dependencies": {
+    "@redux-devtools/extension": "^3.2.3"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  }
+}

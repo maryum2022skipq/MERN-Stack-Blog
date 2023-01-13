@@ -27,6 +27,25 @@ const postSchema = mongoose.Schema(
       type: Array,
       required: false,
     },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    comments: [{
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, "Please add a text value."],
+        ref: "User",
+      },
+      comment: {
+        type: String,
+      },
+      date: {
+        type: Date,
+      },
+    }],
   },
   { timestamps: true }
 );
